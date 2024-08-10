@@ -83,7 +83,7 @@ static char	**ft_cpy_strs(char **strs, const char *s, char c)
 	return (strs);
 }
 
-static char	**ft_merror(char **strs)
+static void	ft_merror(char **strs)
 {
 	size_t	i;
 
@@ -95,7 +95,8 @@ static char	**ft_merror(char **strs)
 		i++;
 	}
 	free(strs);
-	return (NULL);
+	write(2, "ERROR\n", 6);
+	exit(0);
 }
 
 char	**ft_split(char const *s, char c)
@@ -121,6 +122,6 @@ char	**ft_split(char const *s, char c)
 		strs[wordcount] = NULL;
 	}
 	else
-		strs = ft_merror(strs);
+		ft_merror(strs);
 	return (strs);
 }

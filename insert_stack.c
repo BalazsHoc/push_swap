@@ -6,26 +6,26 @@
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 17:35:36 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/08/09 17:35:38 by bhocsak          ###   ########.fr       */
+/*   Updated: 2024/08/10 14:29:07 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	insert_node(t_stack **root, int value)
+static void	insert_node(t_stack **a, int value, char **argv, bool if_new_argv)
 {
 	t_stack	*new_node;
 	t_stack	*curr;
 
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
-		return ;
-	new_node->next = NULL;
+		error_occupied(a, argv, if_new_argv);
 	new_node->value = value;
-	curr = *root;
-	if (*root == NULL)
+	new_node->next = NULL;
+	curr = *a;
+	if (*a == NULL)
 	{
-		*root = new_node;
+		*a = new_node;
 		new_node->prev = NULL;
 	}
 	else
@@ -37,7 +37,7 @@ static void	insert_node(t_stack **root, int value)
 	}
 }
 
-void	create_stack(t_stack **a, char **argv)
+void	create_stack(t_stack **a, char **argv, bool if_new_argv)
 {
 	long	n;
 	int		i;
@@ -45,12 +45,10 @@ void	create_stack(t_stack **a, char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		n =  atol(argv[i]);
-		if (n > INT_MAX || n  < INT_MIN)
-		
-
-
-		insert_node(a, (int)n);
+		n = atol(argv[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			error_occupied(a, argv, if_new_argv);
+		insert_node(a, (int)n, argv, if_new_argv);
 		i++;
 	}
 }

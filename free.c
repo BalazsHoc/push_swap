@@ -6,26 +6,49 @@
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 18:58:22 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/08/09 18:58:24 by bhocsak          ###   ########.fr       */
+/*   Updated: 2024/08/10 14:28:20 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	free_argv(char **strs)
+{
+	size_t	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		strs[i] = NULL;
+		i++;
+	}
+	free(strs);
+}
+
 void	stack_free(t_stack **root)
 {
-	t_stack *curr;
-	t_stack *del;
+	t_stack	*curr;
+	t_stack	*del;
 
-    if (!root)
-        return ;
+	if (!root || !(*root))
+		return ;
 	curr = *root;
 	del = curr;
 	while (curr != NULL)
 	{
-        del = curr;
+		del = curr;
 		curr = curr->next;
 		free(del);
 	}
 	*root = NULL;
+}
+
+void	error_occupied(t_stack **a, char **argv, bool if_new_argv)
+{
+	if (if_new_argv)
+		free_argv(argv);
+	stack_free(a);
+	write(2, "Error\n", 6);
+	exit(2);
 }

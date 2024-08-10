@@ -35,8 +35,8 @@ void	push(t_stack **dest, t_stack **src)
 		push_node->next->prev = push_node;
 	}
 	push_node->prev = NULL;
-	if (dest == "a")
-		write(1, "pa\n", 3);
-	if (dest == "b")
-		write(1, "pb\n", 3);
+	// if (dest == "a")
+	// 	write(1, "pa\n", 3);
+	// if (dest == "b")
+	// 	write(1, "pb\n", 3);
 }
