@@ -12,18 +12,23 @@
 
 #include "push_swap.h"
 
-void	free_argv(char **strs)
+void	free_argv(char **strs, bool nargv)
 {
 	size_t	i;
 
 	i = 0;
-	while (strs[i])
+	if (nargv)
 	{
-		free(strs[i]);
-		strs[i] = NULL;
-		i++;
+		while (strs[i])
+		{
+			free(strs[i]);
+			strs[i] = NULL;
+			i++;
+		}
+		free(strs);
 	}
-	free(strs);
+	write(2, "Error\n", 6);
+	exit(4);
 }
 
 void	stack_free(t_stack **root)
@@ -44,11 +49,10 @@ void	stack_free(t_stack **root)
 	*root = NULL;
 }
 
-void	error_occupied(t_stack **a, char **argv, bool if_new_argv)
+void	error_occupied(char **argv, bool nargv)
 {
-	if (if_new_argv)
-		free_argv(argv);
-	stack_free(a);
+	if (nargv)
+		free_argv(argv, nargv);
 	write(2, "Error\n", 6);
-	exit(2);
+	exit(3);
 }

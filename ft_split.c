@@ -95,11 +95,11 @@ static void	ft_merror(char **strs)
 		i++;
 	}
 	free(strs);
-	write(2, "ERROR\n", 6);
-	exit(0);
+	write(2, "Error\n", 6);
+	exit(2);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**strs;
 	int		wordcount;
@@ -108,14 +108,16 @@ char	**ft_split(char const *s, char c)
 	{
 		strs = malloc(sizeof(char) * 1);
 		if (!strs)
-			return (NULL);
+			exit(0);
 		*strs = NULL;
 		return (strs);
 	}
 	wordcount = ft_count_words(s, c);
+	if (!wordcount)
+		exit(0);
 	strs = malloc(sizeof(*strs) * (wordcount + 1));
 	if (!strs)
-		return (NULL);
+		exit(1);
 	if (ft_malloc_strs(strs, s, c))
 	{
 		ft_cpy_strs(strs, s, c);

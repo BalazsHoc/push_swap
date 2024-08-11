@@ -6,17 +6,20 @@
 #    By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/09 19:06:46 by bhocsak           #+#    #+#              #
-#    Updated: 2024/08/09 19:07:32 by bhocsak          ###   ########.fr        #
+#    Updated: 2024/08/11 12:37:20 by bhocsak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES =	#Fill thatp
+SOURCES =	checks.c free.c ft_atol.c ft_split.c insert_stack.c\
+			main.c push.c reverse_rotate.c rotate.c swap.c
+
+HEADER = push_swap.h
 
 OBJECTS = $(SOURCES:.c=.o)
-NAME = .a   #Fill that up
+NAME = push_swap
 
 all: $(NAME)
 

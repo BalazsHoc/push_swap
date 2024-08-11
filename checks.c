@@ -12,7 +12,9 @@
 
 #include "push_swap.h"
 
-void	repeat_check(t_stack *a, char **argv, bool if_new_argv)
+#include <stdio.h> //TAKE THAT OUT
+
+void	repeat_check(t_stack *a, char **argv, bool nargv)
 {
 	t_stack	*curr;
 	t_stack	*ref;
@@ -25,7 +27,7 @@ void	repeat_check(t_stack *a, char **argv, bool if_new_argv)
 		while (curr)
 		{
 			if (ref->value == curr->value)
-				error_occupied(a, argv, if_new_argv);
+				error_occupied(argv, nargv);
 			curr = curr->next;
 		}
 		ref = ref->next;
@@ -33,22 +35,26 @@ void	repeat_check(t_stack *a, char **argv, bool if_new_argv)
 	}
 }
 
-void	syntax_check(char **argv, bool new_argv)
+void	syntax_check(char **argv, bool nargv)
 {
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
+	if (nargv)
+		i = 0;
 	j = 0;
 	while (argv[i])
 	{
 		while (argv[i][j])
 		{
-			if ((argv[i][j] != '-' || argv[i][j] != '+')
-						|| (!(argv[i][j] >= '0') && !(argv[i][j] <= '9')))
-				free_argv(argv, new_argv);
+			if (j == 0 && (argv[i][j] != '-') && (argv[i][j] != '+')
+					&& !((argv[i][j] >= 48) && (argv[i][j] <= 57)))
+				free_argv(argv, nargv);
+			if (j > 0 && !((argv[i][j] >= 48) && (argv[i][j] <= 57)))
+				free_argv(argv, nargv);
 			if (j > 0 && (argv[i][j] == '-' || argv[i][j] == '+'))
-				free_argv(argv, new_argv);
+				free_argv(argv, nargv);
 			j++;
 		}
 		j = 0;
