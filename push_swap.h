@@ -30,17 +30,20 @@ typedef struct s_stack
 void	repeat_check(t_stack *a, char **argv, bool nargv);
 void	syntax_check(char **argv, bool nargv);
 
-void	free_argv(char **strs, bool nargv);
+void	free_argv(char **strs, bool nargv, bool error);
 void	stack_free(t_stack **root);
 void	error_occupied(char **argv, bool nargv);
+void	error_stack_creation(char **argv, bool nargv, t_stack **a);
 
 long	ft_atol(const char *nptr);
 
 char	**ft_split(char *s, char c);
 
-t_stack	*create_stack(char **argv, bool nargv);
+t_stack	**create_stack(char **argv, bool nargv);
 
 int	main(int argc, char **argv);
+
+void    push_swap(char **argv, bool nargv);
 
 void	push(t_stack **dest, t_stack **src);
 

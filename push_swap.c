@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 17:28:34 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/08/12 16:43:32 by bhocsak          ###   ########.fr       */
+/*   Created: 2024/08/12 10:51:52 by bhocsak           #+#    #+#             */
+/*   Updated: 2024/08/12 16:42:40 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 
 #include <stdio.h> //TAKE THAT OUT
 
-int	main(int argc, char **argv)
+static void	write_stack(t_stack **root)
 {
-	bool	nargv;
+	t_stack	*cur;
 
-	nargv = false;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		exit(0);
-	if (argc == 2)
+	cur = *root;
+	while (cur)
 	{
-		argv = ft_split(argv[1], 32);
-		nargv = true;
+		printf("cur: %d\n", cur->value);
+		cur = cur->next;
 	}
-	syntax_check(argv, nargv);
-	push_swap(argv, nargv);
+}
 
-	// repeat_check(*a, argv, nargv); //MAYBE we dont need that here
-	// stack_free(&a);
+void	push_swap(char **argv, bool nargv)
+{
+	t_stack	**a;
+
+	a = create_stack(argv, nargv);
+	free_argv(argv, nargv, false);
+	write_stack(a);
+
+	//stack_free(a);
 }

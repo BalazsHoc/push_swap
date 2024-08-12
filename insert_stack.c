@@ -15,60 +15,57 @@
 #include <stdio.h> //TAKE THAT OUT
 #include <stdlib.h> //TAKE THAT OUT
 
-// t_stack *insert_node(t_stack **a, int value, char **argv, bool nargv)
+// static t_stack	**first_node(t_stack *last_node)
 // {
-// 	printf("hey\n");
+// 	t_stack **first_node;
 
-// 	t_stack	*new_node;
-// 	t_stack	*curr;
-
-// 	new_node = malloc(sizeof(t_stack));
-// 	if (!new_node)
-// 		error_occupied(argv, nargv);
-// 	new_node->value = value;
-// 	new_node->next = NULL;
-// 	printf("HI\n");
-
-// 	if (a == NULL)
-// 	{
-// 		a = new_node;
-// 		new_node->prev = NULL;
-// 	}
-// 	else
-// 	{
-// 		curr = a;
-// 		while (curr->next != NULL)
-// 			curr = curr->next;
-// 		curr->next = new_node;
-// 		new_node->prev = curr;
-// 	}
+// 	first_node = &last_node;
+// 	while ((*first_node)->prev)
+// 		*first_node = (*first_node)->prev;
+// 	return (first_node);
 // }
 
-t_stack	*create_stack(char **argv, bool nargv)
+static void	insert_end(char **argv, bool nargv, t_stack **a, int value)
 {
-	int		i;
-	t_stack	*a;
+	t_stack	*new_node;
 	t_stack	*cur;
-	t_stack	*buf;
 
+	printf("HERE1\n");
+	cur = *a; //THIS IS HERE THE PROBLEM
+	// if (!a)
+	// 	return ;
+	new_node = malloc(sizeof(t_stack));
+	if (!new_node)
+		error_stack_creation(argv, nargv, a);
+	new_node->value = value;
+	new_node->next = NULL;
+	if (*a == NULL)
+	{
+		*a = new_node;
+		new_node->prev = NULL;
+	}
+	else
+	{
+		printf("new->value: %d\n", new_node->value);
+		while (cur->next)
+			cur = cur->next;
+		cur->next = new_node;
+		new_node->prev = cur;
+	}
+}
+
+t_stack	**create_stack(char **argv, bool nargv)
+{
+	t_stack	**root;
+	int		i;
+
+	root = NULL;
 	i = 1;
-	buf = NULL;
-	a = NULL;
 	while (argv[i - nargv])
 	{
 		if (atol(argv[i - nargv]) > INT_MAX || atol(argv[i - nargv]) < INT_MIN)
-			error_occupied(argv, nargv);
-		cur = malloc(sizeof(t_stack) * 1);
-		if (!cur)
-			error_occupied(argv, nargv);
-		cur->value = atol(argv[i - nargv]);
-		cur->next = NULL;
-		if (i == 1)
-			a = cur;
-		else if (buf)
-			cur->prev = buf;
-		buf = cur;
-		i++;
+			error_stack_creation(argv, nargv, root);
+		insert_end(argv, nargv, root, atol(argv[i - nargv]));
 	}
-	return (a);
+	return (root);
 }
