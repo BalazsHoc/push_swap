@@ -31,7 +31,7 @@ static void	insert_end(char **argv, bool nargv, t_stack **a, int value)
 	t_stack	*cur;
 
 	printf("HERE1\n");
-	cur = *a; //THIS IS HERE THE PROBLEM
+	//cur = *a; //THIS IS HERE THE PROBLEM
 	// if (!a)
 	// 	return ;
 	new_node = malloc(sizeof(t_stack));
@@ -47,6 +47,7 @@ static void	insert_end(char **argv, bool nargv, t_stack **a, int value)
 	else
 	{
 		printf("new->value: %d\n", new_node->value);
+		cur = *a;
 		while (cur->next)
 			cur = cur->next;
 		cur->next = new_node;
