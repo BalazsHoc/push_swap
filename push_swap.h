@@ -39,7 +39,7 @@ long	ft_atol(const char *nptr);
 
 char	**ft_split(char *s, char c);
 
-void	create_stack(char **argv, t_stack** a, bool nargv);
+t_stack	*create_stack(char **argv, bool nargv);
 
 int	main(int argc, char **argv);
 
