@@ -31,3 +31,16 @@ void	reverse_rotate(t_stack **root)
 	// if (root == "b")
 	// 	write(1, "rrb\n", 3);
 }
+
+void	lets_reverse_rotate(t_stack **root, char rootname, bool is_both)
+{
+	reverse_rotate(root);
+	if (rootname == 'a' && !is_both)
+		write(1, "rra\n", 3);
+	else if (rootname == 'b' && !is_both)
+		write(1, "rrb\n", 3);
+	else if (is_both)
+	{
+		
+	}
+}

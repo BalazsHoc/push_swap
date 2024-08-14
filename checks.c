@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include <stdio.h> //TAKE THAT OUT
-
 void	repeat_check(t_stack *a, char **argv, bool nargv)
 {
 	t_stack	*curr;

@@ -19,7 +19,7 @@
 # include <limits.h>
 
 
-#include <stdio.h>
+#include <stdio.h>	// TAKE THAT OUT
 
 
 typedef struct s_stack
@@ -52,6 +52,7 @@ char	**ft_split(char *s);
 //implementation.c
 bool	is_sorted(t_stack **root, char root_name);
 size_t  list_length(t_stack **root);
+void    three_num_a(t_stack **root);
 
 //insert_stack.c
 t_stack	*create_stack(char **argv, bool nargv);

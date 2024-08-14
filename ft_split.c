@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int is_det(char c)
+static int	is_det(char c)
 {
 	if (c == ' ' || c == '\t')
 		return (1);

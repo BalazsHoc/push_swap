@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include <stdio.h> //TAKE THAT OUT
-
 // static void	write_stack(t_stack **root)
 // {
 // 	t_stack	*cur;
@@ -36,8 +34,6 @@ void	push_swap(char **argv, bool nargv)
 	repeat_check(a, argv, nargv);
 	
 
-	//printf("list_len: %zu\n", list_length(&a));
-	//printf("is_sorted: %d\n", is_sorted(&a, 'a'));
-	//write_stack(&a);
+
 	stack_free(&a);
 }

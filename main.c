@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include <stdio.h> //TAKE THAT OUT
-
 int	main(int argc, char **argv)
 {
 	bool	nargv;

@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include <stdio.h> //TAKE THAT OUT
-
 void	free_argv(char **strs, bool nargv, bool error)
 {
 	size_t	i;

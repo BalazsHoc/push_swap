@@ -13,8 +13,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES =	checks.c free.c ft_atol.c ft_split.c insert_stack.c\
-			main.c push.c reverse_rotate.c rotate.c swap.c
+SOURCES =
 
 HEADER = push_swap.h
 
