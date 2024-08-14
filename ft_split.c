@@ -12,7 +12,14 @@
 
 #include "push_swap.h"
 
-static int	ft_count_words(const char *s, char c)
+int is_det(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
+}
+
+static int	ft_count_words(const char *s)
 {
 	int		words;
 	size_t	i;
@@ -21,16 +28,16 @@ static int	ft_count_words(const char *s, char c)
 	i = 0;
 	while (s[i])
 	{
-		if (i == 0 && s[i] != c)
+		if (i == 0 && !is_det(s[i]))
 			words++;
-		if (i > 0 && s[i] != c && s[i - 1] == c)
+		if (i > 0 && !is_det(s[i]) && is_det(s[i - 1]))
 			words++;
 		i++;
 	}
 	return (words);
 }
 
-static char	**ft_malloc_strs(char **strs, const char *s, char c)
+static char	**ft_malloc_cpy(char **new, const char *s)
 {
 	size_t	count;
 	size_t	i;
@@ -38,92 +45,56 @@ static char	**ft_malloc_strs(char **strs, const char *s, char c)
 
 	count = 0;
 	i = 0;
-	j = 0;
 	while (s[i])
 	{
-		if (s[i] != c)
-			count++;
-		if ((s[i] == c && i > 0 && s[i - 1] != c)
-			|| (s[i] != c && s[i + 1] == '\0'))
-		{
-			strs[j] = malloc(sizeof(char) * (count + 1));
-			if (!strs[j])
-				return (NULL);
-			count = 0;
+		j = 0;
+		while (is_det(s[i]))
+			i++;
+		while (!is_det(s[i + j]))
 			j++;
-		}
-		i++;
+		new[count] = malloc(sizeof(char) * (j + 1));
+		if (!new[j])
+			return (NULL);
+		new[count++][j] = 0;
+		j = -1;
+		while (!is_det(s[i + ++j]))
+			new[count - 1][j] = s[i + j];
+		i += j;
 	}
-	return (strs);
+	return (new);
 }
 
-static char	**ft_cpy_strs(char **strs, const char *s, char c)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-			strs[j][k++] = s[i];
-		if (s[i] != c && s[i + 1] == '\0')
-			strs[j][k] = '\0';
-		if (s[i] == c && i > 0 && s[i - 1] != c)
-		{
-			strs[j][k] = '\0';
-			j++;
-			k = 0;
-		}
-		i++;
-	}
-	return (strs);
-}
-
-static void	ft_merror(char **strs)
+static void	ft_merror(char **new)
 {
 	size_t	i;
 
 	i = 0;
-	while (strs[i])
+	while (new[i])
 	{
-		free(strs[i]);
-		strs[i] = NULL;
+		free(new[i]);
+		new[i] = NULL;
 		i++;
 	}
-	free(strs);
+	free(new);
+	new = NULL;
 	write(2, "Error\n", 6);
 	exit(2);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split(char *s)
 {
-	char	**strs;
+	char	**new;
 	int		wordcount;
 
-	if (!s)
-	{
-		strs = malloc(sizeof(char) * 1);
-		if (!strs)
-			exit(0);
-		*strs = NULL;
-		return (strs);
-	}
-	wordcount = ft_count_words(s, c);
+	wordcount = ft_count_words(s);
 	if (!wordcount)
 		exit(0);
-	strs = malloc(sizeof(*strs) * (wordcount + 1));
-	if (!strs)
+	new = malloc(sizeof(char *) * (wordcount + 1));
+	if (!new)
 		exit(1);
-	if (ft_malloc_strs(strs, s, c))
-	{
-		ft_cpy_strs(strs, s, c);
-		strs[wordcount] = NULL;
-	}
+	if (ft_malloc_cpy(new, s))
+		new[wordcount] = NULL;
 	else
-		ft_merror(strs);
-	return (strs);
+		ft_merror(new);
+	return (new);
 }

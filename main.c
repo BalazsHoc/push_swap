@@ -17,18 +17,20 @@
 int	main(int argc, char **argv)
 {
 	bool	nargv;
+	char **arr;
 
 	nargv = false;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		exit(0);
-	if (argc == 2)
+	if (!argv[2])
 	{
-		argv = ft_split(argv[1], 32);
-		nargv = true;
+		arr = ft_split(argv[1]);
+		nargv = 1;
 	}
-	syntax_check(argv, nargv);
-	push_swap(argv, nargv);
+	else
+		arr = argv + 1;
+	syntax_check(arr, nargv);
+	push_swap(arr, nargv);
 
-	// repeat_check(*a, argv, nargv); //MAYBE we dont need that here
 	// stack_free(&a);
 }

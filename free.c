@@ -28,6 +28,7 @@ void	free_argv(char **strs, bool nargv, bool error)
 			i++;
 		}
 		free(strs);
+		strs = NULL;
 	}
 	if (error)
 	{
@@ -65,8 +66,7 @@ void	error_occupied(char **argv, bool nargv)
 void	error_stack_creation(char **argv, bool nargv, t_stack **a)
 {
 	stack_free(a);
-	if (nargv)
-		free_argv(argv, nargv, false);
+	free_argv(argv, nargv, false);
 	write(2, "Error\n", 6);
 	exit(4);
 }

@@ -43,9 +43,9 @@ void	syntax_check(char **argv, bool nargv)
 	i = 1;
 	if (nargv)
 		i = 0;
-	j = 0;
 	while (argv[i])
 	{
+		j = 0;
 		while (argv[i][j])
 		{
 			if (j == 0 && (argv[i][j] != '-') && (argv[i][j] != '+')
@@ -57,7 +57,6 @@ void	syntax_check(char **argv, bool nargv)
 				free_argv(argv, nargv, true);
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 }

@@ -12,9 +12,6 @@
 
 #include "push_swap.h"
 
-#include <stdio.h> //TAKE THAT OUT
-#include <stdlib.h> //TAKE THAT OUT
-
 static void	insert_end(char **argv, bool nargv, t_stack **a, int value)
 {
 	t_stack	*new_node;
@@ -39,22 +36,22 @@ t_stack	*create_stack(char **argv, bool nargv)
 	t_stack *a;
 	int		i;
 
-	i = 1;
-	if (atol(argv[i - nargv]) > INT_MAX || atol(argv[i - nargv]) < INT_MIN)
+	i = 0;
+	if (atol(argv[i]) > INT_MAX || atol(argv[i]) < INT_MIN)
 			error_stack_creation(argv, nargv, &a);
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 		error_stack_creation(argv, nargv, &a);
-	new_node->value = atol(argv[i - nargv]);
+	new_node->value = atol(argv[i]);
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	a = new_node;
 	i++;
-	while (argv[i - nargv])
+	while (argv[i])
 	{
-		if (atol(argv[i - nargv]) > INT_MAX || atol(argv[i - nargv]) < INT_MIN)
+		if (atol(argv[i]) > INT_MAX || atol(argv[i]) < INT_MIN)
 			error_stack_creation(argv, nargv, &a);
-		insert_end(argv, nargv, &a, atol(argv[i - nargv]));
+		insert_end(argv, nargv, &a, atol(argv[i]));
 		i++;
 	}
 	return (a);
