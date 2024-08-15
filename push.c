@@ -6,7 +6,7 @@
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 15:30:42 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/08/09 16:19:43 by bhocsak          ###   ########.fr       */
+/*   Updated: 2024/08/15 19:17:18 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push(t_stack **dest, t_stack **src, char destname)
 		*dest = push_node;
 		push_node->next->prev = push_node;
 	}
-	push_node->prev = NULL;	
+	push_node->prev = NULL;
 	if (destname == 'a')
 		write(1, "pa\n", 3);
 	if (destname == 'a')

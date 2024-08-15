@@ -6,7 +6,7 @@
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:58:42 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/08/09 16:16:27 by bhocsak          ###   ########.fr       */
+/*   Updated: 2024/08/15 19:16:17 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	swap(t_stack **root)
 		cur->next->prev = cur;
 	(*root)->prev = NULL;
 }
+
 void	one_swap(t_stack **root, char rootname)
 {
 	swap(root);

@@ -6,7 +6,7 @@
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 17:35:36 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/08/11 20:04:22 by bhocsak          ###   ########.fr       */
+/*   Updated: 2024/08/15 19:17:59 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static void	insert_end(char **argv, bool nargv, t_stack **a, int value)
 t_stack	*create_stack(char **argv, bool nargv)
 {
 	t_stack	*new_node;
-	t_stack *a;
+	t_stack	*a;
 	int		i;
 
 	i = 0;
 	if (!argv[0])
 		error_occupied(argv, nargv);
 	if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
-			error_occupied(argv, nargv);
+		error_occupied(argv, nargv);
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 		error_occupied(argv, nargv);

@@ -6,7 +6,7 @@
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 17:28:34 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/08/12 16:43:32 by bhocsak          ###   ########.fr       */
+/*   Updated: 2024/08/15 19:15:29 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	bool	nargv;
-	char **arr;
+	char	**arr;
 
 	nargv = false;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
@@ -29,5 +29,5 @@ int	main(int argc, char **argv)
 		arr = argv + 1;
 	syntax_check(arr, nargv);
 	push_swap(arr, nargv);
-
+	return (0);
 }

@@ -25,6 +25,8 @@
 typedef struct s_stack
 {
 	int		value;
+	int		target_value;
+	int		position;
 
 	struct s_stack	*next;
 	struct s_stack	*prev;
@@ -50,8 +52,14 @@ long	ft_atol(char *nptr);
 //ft_split.c
 char	**ft_split(char *s);
 
+//implementation_utils.c
+int		smallest_value(t_stack **a);
+int		target_value(t_stack **a, t_stack *cur_b);
+void	positions(t_stack **a, t_stack **b);
+
 //implementation.c
 void    three_num_a(t_stack **root);
+void    push_swap_algorithm(t_stack **a);
 
 //insert_stack.c
 t_stack	*create_stack(char **argv, bool nargv);

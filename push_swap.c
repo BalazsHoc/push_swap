@@ -6,7 +6,7 @@
 /*   By: bhocsak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:51:52 by bhocsak           #+#    #+#             */
-/*   Updated: 2024/08/12 16:42:40 by bhocsak          ###   ########.fr       */
+/*   Updated: 2024/08/15 19:15:01 by bhocsak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	push_swap(char **argv, bool nargv)
 	}
 	else if (list_length(&a) == 3)
 		three_num_a(&a);
+	else if (list_length(&a) > 3)
+		push_swap_algorithm(&a);
 
-	write_stack(&a);
+	//write_stack(&a);
+
 	stack_free(&a);
 }
