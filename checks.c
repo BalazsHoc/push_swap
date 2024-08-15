@@ -47,9 +47,9 @@ void	syntax_check(char **argv, bool nargv)
 		while (argv[i][j])
 		{
 			if (j == 0 && (argv[i][j] != '-') && (argv[i][j] != '+')
-					&& !((argv[i][j] >= 48) && (argv[i][j] <= 57)))
+					&& !((argv[i][j] >= '0') && (argv[i][j] <= '9')))
 				free_argv(argv, nargv, true);
-			if (j > 0 && !((argv[i][j] >= 48) && (argv[i][j] <= 57)))
+			if (j > 0 && !((argv[i][j] >= '0') && (argv[i][j] <= '9')))
 				free_argv(argv, nargv, true);
 			if (j > 0 && (argv[i][j] == '-' || argv[i][j] == '+'))
 				free_argv(argv, nargv, true);

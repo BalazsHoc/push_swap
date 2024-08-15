@@ -23,12 +23,11 @@ int	main(int argc, char **argv)
 	if (!argv[2])
 	{
 		arr = ft_split(argv[1]);
-		nargv = 1;
+		nargv = true;
 	}
 	else
 		arr = argv + 1;
 	syntax_check(arr, nargv);
 	push_swap(arr, nargv);
 
-	// stack_free(&a);
 }

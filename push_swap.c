@@ -12,18 +12,6 @@
 
 #include "push_swap.h"
 
-// static void	write_stack(t_stack **root)
-// {
-// 	t_stack	*cur;
-
-// 	cur = *root;
-// 	while (cur != NULL)
-// 	{
-// 		printf("cur->value: %d\n", cur->value);
-// 		cur = cur->next;
-// 	}
-// }
-
 void	push_swap(char **argv, bool nargv)
 {
 	t_stack	*a;
@@ -32,8 +20,14 @@ void	push_swap(char **argv, bool nargv)
 	free_argv(argv, nargv, false);
 	nargv = 0;
 	repeat_check(a, argv, nargv);
-	
+	if (list_length(&a) == 2)
+	{
+		if (!is_sorted(&a, 'a'))
+			one_swap(&a, 'a');
+	}
+	else if (list_length(&a) == 3)
+		three_num_a(&a);
 
-
+	write_stack(&a);
 	stack_free(&a);
 }

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	rotate(t_stack **root)
+static void	rotate(t_stack **root)
 {
 	t_stack	*last;
 
@@ -27,8 +27,20 @@ void	rotate(t_stack **root)
 	last->next->prev = last;
 	last->next->next = NULL;
 	(*root)->prev = NULL;
-	// if (root == "a")
-	// 	write(1, "ra\n", 3);
-	// if (root == "b")
-	// 	write(1, "rb\n", 3);
+}
+
+void	one_rotate(t_stack **root, char rootname)
+{
+	rotate(root);
+	if (rootname == 'a')
+		write(1, "ra\n", 3);
+	else if (rootname == 'b')
+		write(1, "rb\n", 3);
+}
+
+void	both_rotate(t_stack **a, t_stack **b)
+{
+	rotate(a);
+	rotate(b);
+	write(1, "rr\n", 3);
 }

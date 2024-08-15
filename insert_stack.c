@@ -37,21 +37,23 @@ t_stack	*create_stack(char **argv, bool nargv)
 	int		i;
 
 	i = 0;
-	if (atol(argv[i]) > INT_MAX || atol(argv[i]) < INT_MIN)
-			error_stack_creation(argv, nargv, &a);
+	if (!argv[0])
+		error_occupied(argv, nargv);
+	if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
+			error_occupied(argv, nargv);
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
-		error_stack_creation(argv, nargv, &a);
-	new_node->value = atol(argv[i]);
+		error_occupied(argv, nargv);
+	new_node->value = (int)ft_atol(argv[i]);
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	a = new_node;
 	i++;
 	while (argv[i])
 	{
-		if (atol(argv[i]) > INT_MAX || atol(argv[i]) < INT_MIN)
+		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
 			error_stack_creation(argv, nargv, &a);
-		insert_end(argv, nargv, &a, atol(argv[i]));
+		insert_end(argv, nargv, &a, ft_atol(argv[i]));
 		i++;
 	}
 	return (a);

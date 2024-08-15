@@ -44,22 +44,22 @@ static char	**ft_malloc_cpy(char **new, const char *s)
 	size_t	j;
 
 	count = 0;
-	i = 0;
-	while (s[i])
+	i = -1;
+	while (s[++i])
 	{
-		j = 0;
-		while (is_det(s[i]))
-			i++;
-		while (!is_det(s[i + j]))
-			j++;
-		new[count] = malloc(sizeof(char) * (j + 1));
-		if (!new[j])
-			return (NULL);
-		new[count++][j] = 0;
-		j = -1;
-		while (!is_det(s[i + ++j]))
-			new[count - 1][j] = s[i + j];
-		i += j;
+		if ((i == 0 && !is_det(s[i])) || (!is_det(s[i]) && is_det(s[i - 1])))
+		{
+			j = 0;
+			while (s[i + j] && !is_det(s[i + j]))
+				j++;
+			new[count] = malloc(sizeof(char) * (j + 1));
+			if (!new[count])
+				return (NULL);
+			new[count++][j] = '\0';
+			j = 0;
+			while (s[i] && !is_det(s[i]))
+				new[count - 1][j++] = s[i++];
+		}
 	}
 	return (new);
 }

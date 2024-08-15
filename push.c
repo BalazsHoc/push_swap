@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	push(t_stack **dest, t_stack **src)
+void	push(t_stack **dest, t_stack **src, char destname)
 {
 	t_stack	*push_node;
 
@@ -34,11 +34,9 @@ void	push(t_stack **dest, t_stack **src)
 		*dest = push_node;
 		push_node->next->prev = push_node;
 	}
-	push_node->prev = NULL;
-
-	
-	// if (dest == "a")
-	// 	write(1, "pa\n", 3);
-	// if (dest == "b")
-	// 	write(1, "pb\n", 3);
+	push_node->prev = NULL;	
+	if (destname == 'a')
+		write(1, "pa\n", 3);
+	if (destname == 'a')
+		write(1, "pb\n", 3);
 }

@@ -12,19 +12,34 @@
 
 #include "push_swap.h"
 
-void	swap(t_stack **root)
+static void	swap(t_stack **root)
 {
+	t_stack	*cur;
+
+	cur = *root;
 	if (!root || !(*root))
 		return ;
 	*root = (*root)->next;
-	(*root)->prev->next = (*root)->next;
-	(*root)->prev->prev = *root;
-	(*root)->next = (*root)->prev;
-	if ((*root)->next)
-		(*root)->next->prev = (*root)->prev;
+	cur->next = (*root)->next;
+	(*root)->next = cur;
+	cur->prev = (*root);
 	(*root)->prev = NULL;
-	// if (root == 'a')
-	// 	write(1, "sa\n", 3);
-	// if (root == 'b')
-	// 	write(1, "sb\n", 3);
+	if (cur->next)
+		cur->next->prev = cur;
+	(*root)->prev = NULL;
+}
+void	one_swap(t_stack **root, char rootname)
+{
+	swap(root);
+	if (rootname == 'a')
+		write(1, "sa\n", 3);
+	else if (rootname == 'b')
+		write(1, "sb\n", 3);
+}
+
+void	both_swap(t_stack **a, t_stack **b)
+{
+	swap(a);
+	swap(b);
+	write(1, "ss\n", 3);
 }

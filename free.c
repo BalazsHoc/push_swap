@@ -40,10 +40,10 @@ void	stack_free(t_stack **root)
 	t_stack	*curr;
 	t_stack	*del;
 
-	if (!root)
-		return ;
 	curr = *root;
 	del = curr;
+	if (!root)
+		return ;
 	while (curr != NULL)
 	{
 		del = curr;
