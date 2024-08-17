@@ -74,8 +74,8 @@ void	push_swap_algorithm(t_stack **a)
 			cur_b->target_value = target_value(a, cur_b);
 			cur_b = cur_b->next;
 		}
-		position_median(a);
-		position_median(b);
+		position_median_tag(a);
+		position_median_tag(&b);
 		setting_cheapest(a, &b);
 		push(a, &b, 'a');
 		cur_b = b;
