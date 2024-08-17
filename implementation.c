@@ -55,18 +55,17 @@ void	three_num_a(t_stack **root)
 		one_reverse_rotate(root, 'a');//2 1 3
 }
 
-void	push_swap_algorithm(t_stack **a)
+void	push_swap_algorithm(t_stack **a, t_stack **b)
 {
-	t_stack	*b;
 	t_stack	*cur_b;
 
-	b = NULL;
+	cur_b = *b;
 	if (list_length(a) != 3)
 	{
 		while (list_length(a) != 3)
-		push(&b, a, 'b');
+		push(b, a, 'b');
 	}
-	cur_b = b;
+	cur_b = *b;
 	while (cur_b)
 	{
 		while (cur_b)
@@ -75,10 +74,10 @@ void	push_swap_algorithm(t_stack **a)
 			cur_b = cur_b->next;
 		}
 		position_median_tag(a);
-		position_median_tag(&b);
-		setting_cheapest(a, &b);
-		push(a, &b, 'a');
-		cur_b = b;
+		position_median_tag(b);
+		setting_cheapest(a, b);
+		push(a, b, 'a');
+		cur_b = *b;
 	}
-	write_stack(&b);
+	write_stack(b);
 }

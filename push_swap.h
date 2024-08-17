@@ -59,7 +59,7 @@ void	position_median_tag(t_stack **root);
 //implementation.c
 int		target_value(t_stack **a, t_stack *cur_b);
 void	three_num_a(t_stack **root);
-void	push_swap_algorithm(t_stack **a);
+void	push_swap_algorithm(t_stack **a, t_stack **b);
 
 //insert_stack.c
 t_stack	*create_stack(char **argv, bool nargv);

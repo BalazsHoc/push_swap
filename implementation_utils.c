@@ -128,7 +128,7 @@ void	setting_cheapest(t_stack **a, t_stack **b)
 	all_price_tagging(a, b);
 	while (cur_b)
 	{
-		if (cur_b->price > moves)
+		if (cur_b->price < moves)
 			moves = cur_b->price;
 		cur_b = cur_b->next;
 	}
@@ -139,6 +139,6 @@ void	setting_cheapest(t_stack **a, t_stack **b)
 			break ;
 		cur_b = cur_b->next;
 	}
-	setting_cheapest_rr_utils(a, b);
+	setting_cheapest_rr_utils(a, b); // THERE IS THE PROBLEM
 	push(a, b, 'b');
 }

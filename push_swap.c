@@ -15,7 +15,9 @@
 void	push_swap(char **argv, bool nargv)
 {
 	t_stack	*a;
+	t_stack	*b;
 
+	b = NULL;
 	a = create_stack(argv, nargv);
 	free_argv(argv, nargv, false);
 	nargv = 0;
@@ -28,7 +30,7 @@ void	push_swap(char **argv, bool nargv)
 	else if (list_length(&a) == 3)
 		three_num_a(&a);
 	else if (list_length(&a) > 3)
-		push_swap_algorithm(&a);
+		push_swap_algorithm(&a, &b);
 
 	//write_stack(&a);
 
