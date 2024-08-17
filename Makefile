@@ -13,24 +13,28 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES =
-
-HEADER = push_swap.h
+SOURCES =	checks.c free.c ft_atol.c ft_split.c implementation_utils.c\
+			implementation_utils.c implementation.c insert_stack.c main.c\
+			push_swap.c push.c reverse_rotate.c rotate.c stack_utils.c swap.c
 
 OBJECTS = $(SOURCES:.c=.o)
 NAME = push_swap
+ARCHIVE = push_swap.a
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	 ar rcs $(NAME) $(OBJECTS)
+$(NAME): $(ARCHIVE)
+	$(CC) $< -o $@
+
+$(ARCHIVE): $(OBJECTS)
+	ar -rcs $(ARCHIVE) $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS)
-	
+	rm -f $(OBJECTS) $(ARCHIVE)
+
 fclean: clean
 	rm -f $(NAME)
 

@@ -12,6 +12,24 @@
 
 #include "push_swap.h"
 
+int	target_value(t_stack **a, t_stack *cur_b)
+{
+	t_stack	*cur_a;
+	long	smallest_higher;
+
+	cur_a = *a;
+	smallest_higher = LONG_MAX;
+	while (cur_a)
+	{
+		if (cur_b->value < cur_a->value && cur_a->value > smallest_higher)
+			smallest_higher = cur_a->value;
+		cur_a = cur_a->next;
+	}
+	if (smallest_higher == LONG_MAX)
+		smallest_higher = smallest_value(a);
+	return ((int)smallest_higher);
+}
+
 void	three_num_a(t_stack **root)
 {
 	t_stack	*cur;
@@ -51,9 +69,16 @@ void	push_swap_algorithm(t_stack **a)
 	cur_b = b;
 	while (cur_b)
 	{
-		cur_b->target_value = target_value(a, cur_b);
-		cur_b = cur_b->next;
+		while (cur_b)
+		{
+			cur_b->target_value = target_value(a, cur_b);
+			cur_b = cur_b->next;
+		}
+		position_median(a);
+		position_median(b);
+		setting_cheapest(a, &b);
+		push(a, &b, 'a');
+		cur_b = b;
 	}
-	positions(a, &b);
 	write_stack(&b);
 }
