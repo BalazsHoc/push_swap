@@ -78,7 +78,7 @@ static void	ft_merror(char **new)
 	free(new);
 	new = NULL;
 	write(2, "Error\n", 6);
-	exit(2);
+	exit(3);
 }
 
 char	**ft_split(char *s)
@@ -88,10 +88,13 @@ char	**ft_split(char *s)
 
 	wordcount = ft_count_words(s);
 	if (!wordcount)
-		exit(0);
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	new = malloc(sizeof(char *) * (wordcount + 1));
 	if (!new)
-		exit(1);
+		exit(2);
 	if (ft_malloc_cpy(new, s))
 		new[wordcount] = NULL;
 	else

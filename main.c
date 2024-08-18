@@ -18,8 +18,13 @@ int	main(int argc, char **argv)
 	char	**arr;
 
 	nargv = false;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	if (argc == 1)
 		exit(0);
+	if ((argc == 2 && !argv[1][0]))
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	if (!argv[2])
 	{
 		arr = ft_split(argv[1]);

@@ -21,7 +21,7 @@ void	write_stack(t_stack **root) // TAKE THAT OUT
 	cur = *root;
 	while (cur)
 	{
-		printf("%d cur->targetv:\t%d\n", i, cur->target_value);
+		printf("%d cur->value:\t%d\n", i, cur->value);
 		cur = cur->next;
 		i++;
 	}

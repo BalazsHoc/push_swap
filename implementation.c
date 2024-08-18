@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+int	highest_num(t_stack **root)
+{
+	t_stack	*cur;
+	int		highest;
+
+	highest = 0;
+	cur = (*root);
+	while (cur)
+	{
+		if (cur->value > highest)
+			highest = cur->value;
+		cur = cur->next;
+	}
+	return (highest);
+}
+
 int	target_value(t_stack **a, t_stack *cur_b)
 {
 	t_stack	*cur_a;
@@ -33,26 +49,29 @@ int	target_value(t_stack **a, t_stack *cur_b)
 void	three_num_a(t_stack **root)
 {
 	t_stack	*cur;
+	int		highest;
 
-	cur = *root;
+	cur = (*root)->next;
+	highest = highest_num(root);
 	if (is_sorted(root, 'a'))
 		return ;
-	if (cur->value > cur->next->value && cur->next->value > cur->next->next->value && cur->value > cur->next->next->value)
+	if (cur->value == highest)
 	{
-		one_rotate(root, 'a');
-		one_swap(root, 'a');// 3 2 1
+		one_reverse_rotate(root, 'a');
+		if (!is_sorted(root, 'a'))
+			one_swap(root, 'a');
+		return ;
 	}
-	else if (cur->value < cur->next->value && cur->next->value > cur->next->next->value && cur->value < cur->next->next->value)
+	else if (cur->next->value == highest)
 	{
 		one_swap(root, 'a');
-		one_rotate(root, 'a');// 1 3 2
+		if (!is_sorted(root, 'a'))
+			one_swap(root, 'a');
+		return ;
 	}
-	else if (cur->value > cur->next->value && cur->next->value < cur->next->next->value && cur->value > cur->next->next->value)
-		one_rotate(root, 'a');// 3 1 2
-	else if (cur->value < cur->next->value && cur->next->value > cur->next->next->value && cur->value > cur->next->next->value)
-		one_reverse_rotate(root, 'a');// 2 3 1
-	else
-		one_reverse_rotate(root, 'a');//2 1 3
+	one_rotate(root, 'a');
+	if (!is_sorted(root, 'a'))
+		one_swap(root, 'a');
 }
 
 void	push_swap_algorithm(t_stack **a, t_stack **b)
@@ -63,7 +82,7 @@ void	push_swap_algorithm(t_stack **a, t_stack **b)
 	if (list_length(a) != 3)
 	{
 		while (list_length(a) != 3)
-		push(b, a, 'b');
+			push(b, a, 'b');
 	}
 	cur_b = *b;
 	while (cur_b)

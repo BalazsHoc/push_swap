@@ -21,13 +21,13 @@
 
 typedef struct s_stack
 {
-	int		value;
-	int		target_value;
-	int		position;
-	bool	above_median;
-	int		price;
-	bool	cheapest;
-	bool	rr;
+	int				value;
+	int				target_value;
+	int				position;
+	bool			above_median;
+	int				price;
+	bool			cheapest;
+	bool			rr;
 
 	struct s_stack	*next;
 	struct s_stack	*prev;
