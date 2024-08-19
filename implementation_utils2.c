@@ -35,6 +35,8 @@ void	position_median_tag(t_stack **root)
 	size_t	i;
 
 	cur = *root;
+	if (!root || !(*root))
+		return ;
 	i = 1;
 	while (cur)
 	{

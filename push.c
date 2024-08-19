@@ -44,4 +44,6 @@ void	push(t_stack **dest, t_stack **src, char destname)
 		write(1, "pa\n", 3);
 	if (destname == 'b')
 		write(1, "pb\n", 3);
+	position_median_tag(dest);
+	position_median_tag(src);
 }
