@@ -32,18 +32,18 @@ static void	all_price_tagging(int len_a, t_stack **b)
 
 static void	setting_cheapest_hard(t_stack **a, t_stack **b, t_stack *cur_b)
 {
-	if (cur_b->above_median == 0)
+	if (cur_b->above_median == 0 && cur_b->target->above_median == 1)
 	{
 		while (cur_b->position != 1)
 			one_reverse_rotate(b, 'b');
-		while (cur_b->target->position != 1 && cur_b->target->above_median)
+		while (cur_b->target->position != 1)
 			one_rotate(a, 'a');
 	}
 	else
 	{
 		while (cur_b->target->position != 1)
 			one_reverse_rotate(a, 'a');
-		while (cur_b->position != 1 && cur_b->above_median)
+		while (cur_b->position != 1)
 			one_rotate(b, 'b');
 	}
 }
