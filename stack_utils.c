@@ -12,21 +12,6 @@
 
 #include "push_swap.h"
 
-void	write_stack(t_stack **root) // TAKE THAT OUT
-{
-	t_stack	*cur;
-	int		i;
-
-	i = 1;
-	cur = *root;
-	while (cur)
-	{
-		printf("%d cur->value:\t%d\n", i, cur->value);
-		cur = cur->next;
-		i++;
-	}
-}
-
 size_t	list_length(t_stack **root)
 {
 	t_stack	*cur;

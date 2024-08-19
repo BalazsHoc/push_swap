@@ -17,20 +17,18 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <limits.h>
-# include <stdio.h> // TAKE THAT OUT
 
 typedef struct s_stack
 {
 	int				value;
-	int				target_value;
 	int				position;
 	bool			above_median;
 	int				price;
 	bool			cheapest;
-	bool			rr;
 
 	struct s_stack	*next;
 	struct s_stack	*prev;
+	struct s_stack	*target;
 }	t_stack;
 
 //checks.c
@@ -52,12 +50,12 @@ char	**ft_split(char *s);
 //implementation_utils.c
 void	setting_cheapest(t_stack **a, t_stack **b);
 
-//implementation_utils.c
+//implementation_utils2.c
 int		smallest_value(t_stack **a);
 void	position_median_tag(t_stack **root);
 
 //implementation.c
-int		target_value(t_stack **a, t_stack *cur_b);
+t_stack	*target_value(t_stack **a, t_stack *cur_b);
 void	three_num_a(t_stack **root);
 void	push_swap_algorithm(t_stack **a, t_stack **b);
 
@@ -86,7 +84,6 @@ void	one_swap(t_stack **root, char rootname);
 void	both_swap(t_stack **a, t_stack **b);
 
 //stack_utils.c
-void	write_stack(t_stack **root);	//TAKE THAT OUT
 size_t	list_length(t_stack **root);
 bool	is_sorted(t_stack **root, char root_name);
 

@@ -31,6 +31,5 @@ void	push_swap(char **argv, bool nargv)
 		three_num_a(&a);
 	else if (list_length(&a) > 3)
 		push_swap_algorithm(&a, &b);
-	write_stack(&a); //TAKE LATER OUT
 	stack_free(&a);
 }

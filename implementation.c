@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	highest_num(t_stack **root)
+static int	highest_num(t_stack **root)
 {
 	t_stack	*cur;
 	int		highest;
@@ -28,7 +28,7 @@ int	highest_num(t_stack **root)
 	return (highest);
 }
 
-int	target_value(t_stack **a, t_stack *cur_b)
+t_stack	*target_value(t_stack **a, t_stack *cur_b)
 {
 	t_stack	*cur_a;
 	long	smallest_higher;
@@ -37,13 +37,16 @@ int	target_value(t_stack **a, t_stack *cur_b)
 	smallest_higher = LONG_MAX;
 	while (cur_a)
 	{
-		if (cur_b->value < cur_a->value && cur_a->value > smallest_higher)
+		if (cur_b->value < cur_a->value && cur_a->value < smallest_higher)
 			smallest_higher = cur_a->value;
 		cur_a = cur_a->next;
 	}
 	if (smallest_higher == LONG_MAX)
 		smallest_higher = smallest_value(a);
-	return ((int)smallest_higher);
+	cur_a = *a;
+	while (cur_a->value != smallest_higher)
+		cur_a = cur_a->next;
+	return (cur_a);
 }
 
 void	three_num_a(t_stack **root)
@@ -84,12 +87,13 @@ void	push_swap_algorithm(t_stack **a, t_stack **b)
 		while (list_length(a) != 3)
 			push(b, a, 'b');
 	}
+	three_num_a(a);
 	cur_b = *b;
 	while (cur_b)
 	{
 		while (cur_b)
 		{
-			cur_b->target_value = target_value(a, cur_b);
+			cur_b->target = target_value(a, cur_b);
 			cur_b = cur_b->next;
 		}
 		position_median_tag(a);
@@ -98,5 +102,6 @@ void	push_swap_algorithm(t_stack **a, t_stack **b)
 		push(a, b, 'a');
 		cur_b = *b;
 	}
-	write_stack(b);
+	while (!is_sorted(a, 'a'))
+		one_rotate(a, 'a');
 }
