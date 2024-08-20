@@ -28,6 +28,31 @@ static int	highest_num(t_stack **root)
 	return (highest);
 }
 
+static void	finishing(t_stack **a)
+{
+	t_stack	*smallest_a;
+	int		smallest_n;
+
+	smallest_a = *a;
+	smallest_n = smallest_value(a);
+	position_median_tag(a);
+	while (smallest_a->value != smallest_n && smallest_a)
+		smallest_a = smallest_a->next;
+	while (!is_sorted(a, 'a'))
+	{
+		if (smallest_a->above_median)
+		{
+			while (smallest_a->position != 0)
+				one_rotate(a, 'a');
+		}
+		else
+		{
+			while (smallest_a->position != 0)
+				one_reverse_rotate(a, 'a');
+		}
+	}
+}
+
 t_stack	*target_value(t_stack **a, t_stack *cur_b)
 {
 	t_stack	*cur_a;
@@ -96,12 +121,10 @@ void	push_swap_algorithm(t_stack **a, t_stack **b)
 			cur_b->target = target_value(a, cur_b);
 			cur_b = cur_b->next;
 		}
-		position_median_tag(a);
-		position_median_tag(b);
 		setting_cheapest(a, b);
 		push(a, b, 'a');
 		cur_b = *b;
 	}
 	while (!is_sorted(a, 'a'))
-		one_rotate(a, 'a');
+		finishing(a);
 }

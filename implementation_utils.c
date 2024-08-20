@@ -16,13 +16,13 @@ static void	all_price_tagging(int len_a, t_stack **b)
 {
 	t_stack	*cur_b;
 
-	cur_b  = *b;
+	cur_b = *b;
 	while (cur_b)
 	{
 		cur_b->price = cur_b->position;
-		if(cur_b->above_median == 0)
+		if (cur_b->above_median == 0)
 			cur_b->price = list_length(b) - (cur_b->position);
-		if (cur_b->above_median)
+		if (cur_b->target->above_median)
 			cur_b->price = cur_b->position + cur_b->target->position;
 		else
 			cur_b->price = cur_b->position + len_a - (cur_b->target->position);
@@ -32,19 +32,25 @@ static void	all_price_tagging(int len_a, t_stack **b)
 
 static void	setting_cheapest_hard(t_stack **a, t_stack **b, t_stack *cur_b)
 {
-	if (cur_b->above_median == 0 && cur_b->target->above_median == 1)
+	if (cur_b->above_median == 0)
 	{
-		while (cur_b->position != 1)
+		while (cur_b->position != 0)
 			one_reverse_rotate(b, 'b');
-		while (cur_b->target->position != 1)
-			one_rotate(a, 'a');
 	}
-	else
+	if (cur_b->target->above_median == 0)
 	{
-		while (cur_b->target->position != 1)
+		while (cur_b->target->position != 0)
 			one_reverse_rotate(a, 'a');
-		while (cur_b->position != 1)
+	}
+	if (cur_b->above_median && cur_b->position != 0)
+	{
+		while (cur_b->position != 0)
 			one_rotate(b, 'b');
+	}
+	if (cur_b->target->above_median && cur_b->target->position != 0)
+	{
+		while (cur_b->target->position != 0)
+			one_rotate(a, 'a');
 	}
 }
 
@@ -57,20 +63,20 @@ static void	setting_cheapest_utils(t_stack **a, t_stack **b, int best_price)
 		cur_b = cur_b->next;
 	if (cur_b->above_median == 0 && cur_b->target->above_median == 0)
 	{
-		while (cur_b->position != 1  && cur_b->target->position != 1)
+		while (cur_b->position != 0 && cur_b->target->position != 0)
 			both_reverse_rotate(a, b);
-		while (cur_b->position != 1 )
+		while (cur_b->position != 0)
 			one_reverse_rotate(b, 'b');
-		while (cur_b->target->position != 1)
+		while (cur_b->target->position != 0)
 			one_reverse_rotate(a, 'a');
 	}
 	else if (cur_b->above_median == 1 && cur_b->target->above_median == 1)
 	{
-		while (cur_b->position != 1  && cur_b->target->position != 1)
+		while (cur_b->position != 0 && cur_b->target->position != 0)
 			both_rotate(a, b);
-		while (cur_b->position != 1)
+		while (cur_b->position != 0)
 			one_rotate(b, 'b');
-		while (cur_b->target->position != 1)
+		while (cur_b->target->position != 0)
 			one_rotate(a, 'a');
 	}
 	else

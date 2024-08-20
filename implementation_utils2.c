@@ -32,12 +32,12 @@ int	smallest_value(t_stack **a)
 void	position_median_tag(t_stack **root)
 {
 	t_stack	*cur;
-	size_t	i;
+	int		i;
 
 	cur = *root;
 	if (!root || !(*root))
 		return ;
-	i = 1;
+	i = 0;
 	while (cur)
 	{
 		cur->position = i;

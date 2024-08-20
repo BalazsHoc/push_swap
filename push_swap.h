@@ -84,7 +84,7 @@ void	one_swap(t_stack **root, char rootname);
 void	both_swap(t_stack **a, t_stack **b);
 
 //stack_utils.c
-size_t	list_length(t_stack **root);
+int		list_length(t_stack **root);
 bool	is_sorted(t_stack **root, char root_name);
 
 #endif

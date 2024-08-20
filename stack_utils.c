@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-size_t	list_length(t_stack **root)
+int	list_length(t_stack **root)
 {
 	t_stack	*cur;
 
