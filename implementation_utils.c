@@ -38,6 +38,16 @@ static void	all_price_tagging(t_stack **a, t_stack **b)
 
 static void	setting_cheapest_hard(t_stack **a, t_stack **b, t_stack *cur_b)
 {
+	if (cur_b->above_median)
+	{
+		while (cur_b->position != 0)
+			one_rotate(b, 'b');
+	}
+	if (cur_b->target->above_median)
+	{
+		while (cur_b->target->position != 0)
+			one_rotate(a, 'a');
+	}
 	if (cur_b->above_median == 0)
 	{
 		while (cur_b->position != 0)
@@ -47,16 +57,6 @@ static void	setting_cheapest_hard(t_stack **a, t_stack **b, t_stack *cur_b)
 	{
 		while (cur_b->target->position != 0)
 			one_reverse_rotate(a, 'a');
-	}
-	if (cur_b->above_median && cur_b->position != 0)
-	{
-		while (cur_b->position != 0)
-			one_rotate(b, 'b');
-	}
-	if (cur_b->target->above_median && cur_b->target->position != 0)
-	{
-		while (cur_b->target->position != 0)
-			one_rotate(a, 'a');
 	}
 }
 
@@ -105,6 +105,5 @@ void	setting_cheapest(t_stack **a, t_stack **b)
 			best_price = cur_b->price;
 		cur_b = cur_b->next;
 	}
-	cur_b = *b;
 	setting_cheapest_utils(a, b, best_price);
 }
