@@ -113,6 +113,8 @@ void	push_swap_algorithm(t_stack **a, t_stack **b)
 	cur_b = *b;
 	while (cur_b)
 	{
+		position_median_tag(a);
+		position_median_tag(b);
 		while (cur_b)
 		{
 			cur_b->target = target_value(a, cur_b);
@@ -122,6 +124,6 @@ void	push_swap_algorithm(t_stack **a, t_stack **b)
 		push(a, b, 'a');
 		cur_b = *b;
 	}
-	while (!is_sorted(a, 'a'))
+	if (!is_sorted(a, 'a'))
 		finishing(a);
 }

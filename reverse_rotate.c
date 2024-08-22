@@ -26,6 +26,7 @@ static void	reverse_rotate(t_stack **root)
 	last->prev = NULL;
 	last->next->prev = last;
 	*root = last;
+	(*root)->position = 0;
 }
 
 void	one_reverse_rotate(t_stack **root, char rootname)
@@ -35,7 +36,6 @@ void	one_reverse_rotate(t_stack **root, char rootname)
 		write(1, "rra\n", 4);
 	else if (rootname == 'b')
 		write(1, "rrb\n", 4);
-	position_median_tag(root);
 }
 
 void	both_reverse_rotate(t_stack **a, t_stack **b)
@@ -43,6 +43,4 @@ void	both_reverse_rotate(t_stack **a, t_stack **b)
 	reverse_rotate(a);
 	reverse_rotate(b);
 	write(1, "rrr\n", 4);
-	position_median_tag(a);
-	position_median_tag(b);
 }

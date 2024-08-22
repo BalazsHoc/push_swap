@@ -36,7 +36,6 @@ void	one_swap(t_stack **root, char rootname)
 		write(1, "sa\n", 3);
 	else if (rootname == 'b')
 		write(1, "sb\n", 3);
-	position_median_tag(root);
 }
 
 void	both_swap(t_stack **a, t_stack **b)
@@ -44,6 +43,4 @@ void	both_swap(t_stack **a, t_stack **b)
 	swap(a);
 	swap(b);
 	write(1, "ss\n", 3);
-	position_median_tag(a);
-	position_median_tag(b);
 }
