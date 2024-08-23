@@ -107,6 +107,8 @@ void	push_swap_algorithm(t_stack **a, t_stack **b)
 	t_stack	*cur_b;
 
 	cur_b = *b;
+	if (is_sorted(a, 'a'))
+		return ;
 	while (list_length(a) != 3)
 		push(b, a, 'b');
 	three_num_a(a);
